@@ -1,0 +1,31 @@
+# general
+export TZ=UTC
+
+# mysql
+export MYSQL_CONFIG_PATH=$HOME/mysql/etc
+export MYSQL_DATA_PATH=$HOME/mysql/data
+export MYSQL_LOG_PATH=$HOME/mysql/log
+
+# redis
+export REDIS_CONFIG_PATH=$HOME/redis/etc
+export REDIS_DATA_PATH=$HOME/redis/data
+
+# nginx
+export NGINX_CONFIG_PATH=$HOME/nginx/etc
+export NGINX_LOG_PATH=$HOME/nginx/log
+export NGINX_CACHE_PATH=$HOME/nginx/cache
+
+# php-fpm
+export PHP_CONFIG_PATH=$HOME/php/etc
+export PHP_FPM_LOG_PATH=$HOME/php/log
+export PHP_APPLICATION_PATH=$HOME/php/application
+
+# supervisor
+export SUPERVISOR_CONFIG_PATH=$HOME/supervisor/etc
+export SUPERVISOR_LOG_PATH=$HOME/supervisor/log
+export SUPERVISOR_APPLICATION_PATH=$HOME/php/application
+
+# blackfire
+export BLACKFIRE_SERVER_ID=
+export BLACKFIRE_SERVER_TOKEN=
+export BLACKFIRE_LOG_LEVEL=3

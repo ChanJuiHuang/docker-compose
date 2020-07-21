@@ -1,0 +1,155 @@
+version: "3.8"
+
+networks:
+  application_service:
+
+services:
+  mysql:
+    image: cjhuang/mysql
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - ${MYSQL_CONFIG_PATH}:/etc/mysql
+      - ${MYSQL_DATA_PATH}:/var/lib/mysql
+      - ${MYSQL_LOG_PATH}:/var/log/mysql
+    networks:
+      - application_service
+    ports:
+      - target: 3306
+        published: 3306
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
+  redis:
+    image: cjhuang/redis
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${REDIS_CONFIG_PATH}:/usr/local/etc/redis
+      - ${REDIS_DATA_PATH}:/data
+    networks:
+      - application_service
+    ports:
+      - target: 6379
+        published: 6379
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
+  nginx:
+    image: cjhuang/nginx:development
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${NGINX_CONFIG_PATH}:/etc/nginx
+      - ${NGINX_LOG_PATH}:/var/log/nginx
+      - ${NGINX_CACHE_PATH}:/var/tmp/cache
+    networks:
+      - application_service
+    ports:
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 443
+        mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
+  php-fpm:
+    image: cjhuang/php-fpm:development
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${PHP_CONFIG_PATH}:/usr/local/etc
+      - ${PHP_FPM_LOG_PATH}:/usr/local/var/log
+      - ${PHP_APPLICATION_PATH}:/var/www/application-service
+    networks:
+      - application_service
+    ports:
+      - target: 9000
+        published: 9000
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
+  supervisor:
+    image: cjhuang/supervisor
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - ${SUPERVISOR_CONFIG_PATH}:/etc/supervisor
+      - ${SUPERVISOR_LOG_PATH}:/var/log/supervisor
+      - ${SUPERVISOR_APPLICATION_PATH}:/var/www/application-service
+    networks:
+      - application_service
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      - BLACKFIRE_SERVER_ID=${BLACKFIRE_SERVER_ID}
+      - BLACKFIRE_SERVER_TOKEN=${BLACKFIRE_SERVER_TOKEN}
+      - BLACKFIRE_LOG_LEVEL=${BLACKFIRE_LOG_LEVEL}
+    networks:
+      application_service:
+        aliases:
+          - blackfire
+    ports:
+      - target: 8707
+        published: 8707
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
