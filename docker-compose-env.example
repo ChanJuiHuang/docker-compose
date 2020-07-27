@@ -14,6 +14,7 @@ export REDIS_DATA_PATH=$HOME/redis/data
 export NGINX_CONFIG_PATH=$HOME/nginx/etc
 export NGINX_LOG_PATH=$HOME/nginx/log
 export NGINX_CACHE_PATH=$HOME/nginx/cache
+export LETSENCRYPT_PATH=/etc/letsencrypt
 
 # php-fpm
 export PHP_CONFIG_PATH=$HOME/php/etc
