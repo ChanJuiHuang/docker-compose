@@ -71,6 +71,7 @@ services:
       - ${NGINX_CONFIG_PATH}:/etc/nginx
       - ${NGINX_LOG_PATH}:/var/log/nginx
       - ${NGINX_CACHE_PATH}:/var/tmp/cache
+      - ${WWW_PATH}:/var/www
       - ${LETSENCRYPT_PATH}:/etc/letsencrypt
     networks:
       - application_service

@@ -10,7 +10,7 @@ mkdir -p $HOME/redis/{etc,data}
 cp -r ./redis/etc/. $HOME/redis/etc
 
 # nginx
-mkdir -p $HOME/nginx/{etc,log,cache}
+mkdir -p $HOME/nginx/{etc,log,cache,www}
 cp -r ./nginx/etc/. $HOME/nginx/etc
 
 # php-fpm

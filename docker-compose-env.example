@@ -15,6 +15,7 @@ export NGINX_CONFIG_PATH=$HOME/nginx/etc
 export NGINX_LOG_PATH=$HOME/nginx/log
 export NGINX_CACHE_PATH=$HOME/nginx/cache
 export LETSENCRYPT_PATH=/etc/letsencrypt
+export WWW_PATH=$HOME/nginx/www
 
 # php-fpm
 export PHP_CONFIG_PATH=$HOME/php/etc
