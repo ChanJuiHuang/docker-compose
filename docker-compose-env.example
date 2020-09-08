@@ -22,6 +22,11 @@ export PHP_CONFIG_PATH=$HOME/php/etc
 export PHP_FPM_LOG_PATH=$HOME/php/log
 export PHP_APPLICATION_PATH=$HOME/php/application
 
+# rabbitmq
+export RABBITMQ_CONFIG_PATH=$HOME/rabbitmq/etc
+export RABBITMQ_DATA_PATH=$HOME/rabbitmq/data
+export RABBITMQ_LOG_PATH=$HOME/rabbitmq/log
+
 # supervisor
 export SUPERVISOR_CONFIG_PATH=$HOME/supervisor/etc
 export SUPERVISOR_LOG_PATH=$HOME/supervisor/log
