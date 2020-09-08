@@ -17,6 +17,9 @@ cp -r ./nginx/etc/. $HOME/nginx/etc
 mkdir -p $HOME/php/{etc,log,application}
 cp -r ./php-fpm/etc/. $HOME/php/etc
 
+# rabbitmq
+mkdir -p $HOME/rabbitmq/{etc,data,log}
+
 # supervisor
 mkdir -p $HOME/supervisor/{etc,log,application}
 cp -r ./supervisor/etc/. $HOME/supervisor/etc

@@ -114,6 +114,38 @@ services:
         max-size: "5M"
         max-file: "2"
 
+  rabbitmq:
+    image: rabbitmq
+    hostname: rabbitmq
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_LOGS=rabbit.log
+    volumes:
+      - ${RABBITMQ_CONFIG_PATH}:/etc/rabbitmq
+      - ${RABBITMQ_DATA_PATH}:/var/lib/rabbitmq
+      - ${RABBITMQ_LOG_PATH}:/var/log/rabbitmq
+    networks:
+      - application_service
+    ports:
+      - target: 5672
+        published: 5672
+      - target: 15672
+        published: 15672
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
   supervisor:
     image: cjhuang/supervisor
     deploy:
