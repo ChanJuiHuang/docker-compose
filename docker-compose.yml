@@ -6,6 +6,7 @@ networks:
 services:
   mysql:
     image: cjhuang/mysql
+    hostname: mysql
     deploy:
       mode: replicated
       replicas: 1
@@ -35,6 +36,7 @@ services:
 
   redis:
     image: cjhuang/redis
+    hostname: redis
     deploy:
       mode: replicated
       replicas: 1
@@ -60,6 +62,7 @@ services:
 
   nginx:
     image: cjhuang/nginx:development
+    hostname: nginx
     deploy:
       mode: replicated
       replicas: 1
@@ -90,6 +93,7 @@ services:
 
   php-fpm:
     image: cjhuang/php-fpm:development
+    hostname: php-fpm
     deploy:
       mode: replicated
       replicas: 1
@@ -148,6 +152,7 @@ services:
 
   supervisor:
     image: cjhuang/supervisor
+    hostname: supervisor
     deploy:
       mode: replicated
       replicas: 1
@@ -171,6 +176,7 @@ services:
 
   blackfire:
     image: blackfire/blackfire
+    hostname: blackfire
     environment:
       - BLACKFIRE_SERVER_ID=${BLACKFIRE_SERVER_ID}
       - BLACKFIRE_SERVER_TOKEN=${BLACKFIRE_SERVER_TOKEN}
