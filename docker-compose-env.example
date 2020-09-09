@@ -11,7 +11,8 @@ export REDIS_CONFIG_PATH=$HOME/redis/etc
 export REDIS_DATA_PATH=$HOME/redis/data
 
 # nginx
-export NGINX_CONFIG_PATH=$HOME/nginx/etc
+export NGINX_CONFIGD_PATH=$HOME/nginx/etc/conf.d
+export NGINX_CONFIG_FILE_PATH=$HOME/nginx/etc/nginx.conf
 export NGINX_LOG_PATH=$HOME/nginx/log
 export NGINX_CACHE_PATH=$HOME/nginx/cache
 export LETSENCRYPT_PATH=/etc/letsencrypt
