@@ -71,7 +71,8 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ${NGINX_CONFIG_PATH}:/etc/nginx
+      - ${NGINX_CONFIGD_PATH}:/etc/nginx/conf.d
+      - ${NGINX_CONFIG_FILE_PATH}:/etc/nginx/nginx.conf
       - ${NGINX_LOG_PATH}:/var/log/nginx
       - ${NGINX_CACHE_PATH}:/var/tmp/cache
       - ${WWW_PATH}:/var/www
