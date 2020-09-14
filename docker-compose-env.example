@@ -6,6 +6,11 @@ export MYSQL_CONFIG_PATH=$HOME/mysql/etc
 export MYSQL_DATA_PATH=$HOME/mysql/data
 export MYSQL_LOG_PATH=$HOME/mysql/log
 
+# pgsql
+export PG_DATA_PATH=$HOME/postgresql/data
+export PG_SERVICE_FILE_PATH=$HOME/postgresql/etc/postgresql-common/pg_service.conf
+export PG_CONFIG_PATH=$HOME/postgresql/etc/postgresql
+
 # redis
 export REDIS_CONFIG_PATH=$HOME/redis/etc
 export REDIS_DATA_PATH=$HOME/redis/data

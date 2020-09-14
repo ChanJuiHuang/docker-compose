@@ -5,6 +5,10 @@ mkdir -p $HOME/mysql/{etc,data,log}
 cp -r ./mysql/etc/. $HOME/mysql/etc
 chmod 777 $HOME/mysql/log
 
+# pgsql
+mkdir -p $HOME/postgresql/{etc,data}
+cp -r ./postgresql/etc/. $HOME/postgresql/etc
+
 # redis
 mkdir -p $HOME/redis/{etc,data}
 cp -r ./redis/etc/. $HOME/redis/etc

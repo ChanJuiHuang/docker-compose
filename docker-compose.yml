@@ -34,6 +34,37 @@ services:
         max-size: "5M"
         max-file: "2"
 
+  postgresql:
+    image: postgres
+    hostname: postgres
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+      update_config:
+        order: start-first
+    environment:
+      - TZ=${TZ}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGSERVICE=dbservice
+    volumes:
+      - ${PG_DATA_PATH}:/var/lib/postgresql/data
+      - ${PG_SERVICE_FILE_PATH}:/etc/postgresql-common/pg_service.conf
+      - ${PG_CONFIG_PATH}:/etc/postgresql
+    networks:
+      - application_service
+    ports:
+      - target: 5432
+        published: 5432
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5M"
+        max-file: "2"
+
   redis:
     image: cjhuang/redis
     hostname: redis

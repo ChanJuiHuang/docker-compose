@@ -1,3 +1,3 @@
 #!/bin/bash
 
-\rm -r $HOME/{mysql,redis,nginx,php,supervisor,rabbitmq}
+\rm -r $HOME/{mysql,postgresql,redis,nginx,php,supervisor,rabbitmq}
