@@ -27,3 +27,4 @@
 # http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 
 [mysql]
+default_character_set = utf8mb4
