@@ -17,7 +17,6 @@ services:
     environment:
       - TZ=${TZ}
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=root
       - MYSQL_PASSWORD=root
     volumes:
       - ${MYSQL_CONFIG_PATH}:/etc/mysql
